@@ -1,0 +1,15 @@
+[Unit]
+Description=Run Obsidian sync every 5 minutes
+Requires=obsidian-sync.service
+
+[Timer]
+Unit=obsidian-sync.service
+OnBootSec=1min
+OnUnitActiveSec=5min
+Persistent=true
+AccuracySec=10s
+
+[Install]
+WantedBy=default.target
+
+

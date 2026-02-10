@@ -1,0 +1,14 @@
+[Unit]
+Description=Sync Obsidian vault before logout/shutdown
+DefaultDependencies=no
+Before=exit.target
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=%h/.scripts/rsync/obsidian-sync.sh
+TimeoutStartSec=2min
+
+[Install]
+WantedBy=exit.target

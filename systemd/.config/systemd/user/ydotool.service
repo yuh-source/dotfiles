@@ -1,0 +1,13 @@
+[Unit]
+Description=ydotool daemon (user)
+After=graphical.target
+
+[Service]
+Type=simple
+# Run ydotoold as your user in background
+ExecStart=/usr/bin/ydotoold --socket-path=%h/.ydotool_socket --socket-own=%U:%U
+Restart=on-failure
+
+[Install]
+WantedBy=default.target
+

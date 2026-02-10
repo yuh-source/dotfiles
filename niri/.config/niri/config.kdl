@@ -1,0 +1,298 @@
+// This config is in the KDL format: https://kdl.dev
+// "/-" comments out the following node.
+// Check the wiki for a full description of the configuration:
+// https://yalter.github.io/niri/Configuration:-Introduction
+
+input {
+    keyboard {
+        repeat-delay 250
+        repeat-rate 50
+        numlock
+    }
+
+    touchpad {
+        tap
+        natural-scroll
+    }
+
+    mouse {
+        accel-profile "flat"
+    }
+
+    focus-follows-mouse max-scroll-amount="0%"
+}
+
+cursor {
+    xcursor-theme "capitaine-cursors"
+    xcursor-size 24
+}
+
+// eDP-1 is generally for laptop screens
+/-output "eDP-1" {
+    // off
+
+    mode "1920x1080@120.030"
+    scale 1
+    transform "normal"
+    position x=0 y=0
+}
+
+output "DP-1" {
+    mode "3440x1440@143.975"
+    variable-refresh-rate on-demand=true
+}
+
+layout {
+    gaps 2
+
+    center-focused-column "never"
+
+    preset-column-widths {
+        // proportion 0.33333
+        proportion 0.5
+        proportion 1.0
+
+        // fixed 1920
+    }
+
+    default-column-width { proportion 0.5; }
+
+    focus-ring {
+        off
+    }
+
+    border {
+        width 2
+        active-color "#606060"
+        inactive-color "#313131"
+    }
+
+    shadow {
+        softness 30
+        spread 5
+        offset x=0 y=5
+        color "#0007"
+    }
+
+    struts {
+    }
+}
+
+spawn-sh-at-startup "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
+spawn-sh-at-startup "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
+
+spawn-sh-at-startup "qs -c noctalia-shell"
+
+spawn-sh-at-startup "vicinae server"
+spawn-sh-at-startup "equibop --wayland"
+
+spawn-at-startup "zen-browser"
+spawn-at-startup "kitty"
+spawn-at-startup "spotify"
+
+
+hotkey-overlay {
+    skip-at-startup
+}
+
+prefer-no-csd
+
+screenshot-path "~/Pictures/Screenshots/%Y-%m-%d %H-%M-%S.png"
+// screenshot-path null
+
+animations {
+    // off
+    slowdown 0.8
+}
+
+workspace "1"
+
+window-rule {
+    match at-startup=true app-id="zen$"
+    match at-startup=true app-id="equibop$"
+    match at-startup=true app-id="kitty$"
+
+    open-on-workspace "1"
+}
+
+workspace "2"
+
+window-rule {
+    match app-id="Spotify$"
+
+    open-on-workspace "2"
+}
+
+// steam popups
+window-rule {
+    match app-id="steam"
+    exclude app-id="steam" title="Steam$"
+
+    open-floating true
+    open-on-workspace "2"
+}
+
+workspace "3"
+
+// game launchers
+window-rule {
+    match app-id="steam"
+    match app-id="heroic"
+    match app-id="org.prismlauncher.PrismLauncher"
+    match app-id="com-atlauncher-App"
+    match app-id="lunarclient"
+
+    open-on-workspace "2"    
+}
+
+// fullscreen games
+window-rule {
+    match app-id=r#"steam_app_"#
+    match app-id="gamescope"
+    match app-id="rocketleague.exe"
+
+    exclude app-id=r#"steam_app_"# title="^$"
+
+    open-fullscreen true
+
+    open-on-workspace "3"
+}
+
+// fake fullscreen games
+window-rule {
+    match app-id="org.vinegarhq.Sober"
+    match app-id="^Lunar Client"
+    match app-id="^Minecraft"
+    match app-id="^Nomi-CEu"
+    match app-id="^Cleanroom"
+
+    default-window-height { proportion 1.0; }
+    default-column-width { proportion 1.0; }
+
+    open-on-workspace "3"
+}
+
+// floating pips
+window-rule {
+    match app-id=r#"zen"# title="^Picture-in-Picture$"
+    match app-id=r#"equibop$"# title=r#"^Discord Popout"#
+
+    open-floating true
+
+    default-floating-position x=0 y=2 relative-to="top-right"
+    default-window-height { proportion 0.4; }
+    default-column-width { proportion 0.29; }
+}
+
+window-rule {
+    geometry-corner-radius 6
+    clip-to-geometry true
+}
+
+layer-rule {
+  match namespace="^noctalia-overview*"
+  place-within-backdrop true
+}
+
+clipboard {
+    disable-primary
+}
+
+gestures {
+    hot-corners {
+        off
+    }
+}
+
+binds {
+    Mod+Shift+Slash { show-hotkey-overlay; }
+
+    Mod+Return { spawn "kitty"; }
+    Mod+D { spawn-sh "vicinae open"; }
+    Mod+W { spawn "nautilus"; }
+    Mod+N { spawn "obsidian"; }
+
+    Mod+Escape { spawn-sh "qs -c noctalia-shell ipc call sessionMenu toggle"; }
+
+    Mod+Space { spawn-sh "playerctl -p spotify play-pause && playerctl -p spotify volume 0.35"; }
+
+    Mod+Shift+Z { set-dynamic-cast-monitor; }
+    Mod+Z { set-dynamic-cast-window; }
+
+    Mod+X { spawn-sh "~/.scripts/autoclick.sh"; }
+
+    XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+"; }
+    XF86AudioLowerVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-"; }
+    XF86AudioMute        allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; }
+    XF86AudioMicMute     allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
+
+    XF86MonBrightnessUp allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "+10%"; }
+    XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "10%-"; }
+
+    Mod+O repeat=false { toggle-overview; }
+    Mod+Tab repeat=false { toggle-overview; }
+
+    Mod+Q repeat=false { close-window; }
+
+    Mod+H     { focus-column-left; }
+    Mod+J     { focus-window-down; }
+    Mod+K     { focus-window-up; }
+    Mod+L     { focus-column-right; }
+
+    Mod+Shift+H     { move-column-left; }
+    Mod+Shift+J     { move-window-down; }
+    Mod+Shift+K     { move-window-up; }
+    Mod+Shift+L     { move-column-right; }
+
+    Mod+A { focus-column-first; }
+    Mod+E { focus-column-last; }
+    Mod+Shift+A { move-column-to-first; }
+    Mod+Shift+E  { move-column-to-last; }
+
+    Mod+U              { focus-workspace-down; }
+    Mod+I              { focus-workspace-up; }
+    Mod+Shift+U         { move-column-to-workspace-down; }
+    Mod+Shift+I         { move-column-to-workspace-up; }
+
+    Mod+Shift+Page_Down { move-workspace-down; }
+    Mod+Shift+Page_Up   { move-workspace-up; }
+    Mod+Shift+Ctrl+U    { move-workspace-down; }
+    Mod+Shift+Ctrl+I    { move-workspace-up; }
+
+    Mod+Shift+WheelScrollDown      cooldown-ms=30 { focus-workspace-down; }
+    Mod+Shift+WheelScrollUp        cooldown-ms=30 { focus-workspace-up; }
+    Mod+WheelScrollDown                            { focus-column-right; }
+    Mod+WheelScrollUp                              { focus-column-left; }
+
+    Mod+WheelScrollRight      { focus-column-right; }
+    Mod+WheelScrollLeft       { focus-column-left; }
+
+    Mod+1 { focus-workspace 1; }
+    Mod+2 { focus-workspace 2; }
+    Mod+3 { focus-workspace 3; }
+    Mod+4 { focus-workspace 4; }
+    Mod+5 { focus-workspace 5; }
+    Mod+6 { focus-workspace 6; }
+    Mod+7 { focus-workspace 7; }
+    Mod+8 { focus-workspace 8; }
+    Mod+9 { focus-workspace 9; }
+    Mod+Shift+1 { move-window-to-workspace 1; }
+    Mod+Shift+2 { move-window-to-workspace 2; }
+    Mod+Shift+3 { move-window-to-workspace 3; }
+    Mod+Shift+4 { move-window-to-workspace 4; }
+    Mod+Shift+5 { move-window-to-workspace 5; }
+    Mod+Shift+6 { move-window-to-workspace 6; }
+    Mod+Shift+7 { move-window-to-workspace 7; }
+    Mod+Shift+8 { move-window-to-workspace 8; }
+    Mod+Shift+9 { move-window-to-workspace 9; }
+
+    Mod+Shift+F { fullscreen-window; }
+    Mod+Ctrl+F { switch-preset-column-width; }
+    Mod+F       { toggle-window-floating; }
+
+    Mod+Shift+S { screenshot; }
+    Ctrl+Print  { screenshot-screen; }
+    Alt+Print   { screenshot-window; }
+
+    Ctrl+Alt+Delete { quit; }
+}

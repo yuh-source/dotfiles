@@ -1,0 +1,17 @@
+[Unit]
+Description=Sync Obsidian vault with Google Drive
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=no
+ExecStart=/home/zz/.scripts/rsync/obsidian-sync.sh
+Nice=10
+IOSchedulingClass=idle
+Environment=PATH=/usr/bin:/usr/local/bin
+
+[Install]
+WantedBy=default.target
+
+
