@@ -41,9 +41,9 @@ cp -a "$CONFIG" "$BACKUP"
 # Core configs
 move_cfg cava cava
 move_cfg fish fish
-move_cfg fastfetch tools
-move_cfg yazi tools
-move_cfg vicinae tools
+move_cfg fastfetch apps
+move_cfg yazi apps
+move_cfg vicinae apps
 
 # Terminal / WM
 move_cfg kitty kitty
