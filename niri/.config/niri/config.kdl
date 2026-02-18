@@ -84,11 +84,13 @@ spawn-sh-at-startup "systemctl --user import-environment WAYLAND_DISPLAY XDG_CUR
 spawn-sh-at-startup "qs -c noctalia-shell"
 
 spawn-sh-at-startup "vicinae server"
-spawn-sh-at-startup "equibop --wayland"
+// spawn-sh-at-startup "vesktop"
+spawn-sh-at-startup "discord"
 
+
+spawn-at-startup "spotify"
 spawn-at-startup "zen-browser"
 spawn-at-startup "kitty"
-spawn-at-startup "spotify"
 
 
 hotkey-overlay {
@@ -109,7 +111,8 @@ workspace "1"
 
 window-rule {
     match at-startup=true app-id="zen$"
-    match at-startup=true app-id="equibop$"
+    match at-startup=true app-id="vesktop$"
+    match at-startup=true app-id="discord$"
     match at-startup=true app-id="kitty$"
 
     open-on-workspace "1"
@@ -118,7 +121,7 @@ window-rule {
 workspace "2"
 
 window-rule {
-    match app-id="Spotify$"
+    match app-id="spotify$"
 
     open-on-workspace "2"
 }
@@ -141,6 +144,7 @@ window-rule {
     match app-id="org.prismlauncher.PrismLauncher"
     match app-id="com-atlauncher-App"
     match app-id="lunarclient"
+    match app-id="apps.exe"
 
     open-on-workspace "2"    
 }
@@ -150,6 +154,7 @@ window-rule {
     match app-id=r#"steam_app_"#
     match app-id="gamescope"
     match app-id="rocketleague.exe"
+    match app-id="endfield.exe"
 
     exclude app-id=r#"steam_app_"# title="^$"
 
@@ -160,7 +165,7 @@ window-rule {
 
 // fake fullscreen games
 window-rule {
-    match app-id="org.vinegarhq.Sober"
+    match app-id="sober"
     match app-id="^Lunar Client"
     match app-id="^Minecraft"
     match app-id="^Nomi-CEu"
@@ -175,7 +180,8 @@ window-rule {
 // floating pips
 window-rule {
     match app-id=r#"zen"# title="^Picture-in-Picture$"
-    match app-id=r#"equibop$"# title=r#"^Discord Popout"#
+    match app-id=r#"vesktop$"# title=r#"^Discord Popout"#
+    match app-id=r#"discord$"# title=r#"^Discord Popout"#
 
     open-floating true
 
@@ -235,13 +241,13 @@ binds {
     Mod+Q repeat=false { close-window; }
 
     Mod+H     { focus-column-left; }
-    Mod+J     { focus-window-down; }
-    Mod+K     { focus-window-up; }
+    Mod+U     { focus-window-down; }
+    Mod+I     { focus-window-up; }
     Mod+L     { focus-column-right; }
 
     Mod+Shift+H     { move-column-left; }
-    Mod+Shift+J     { move-window-down; }
-    Mod+Shift+K     { move-window-up; }
+    Mod+Shift+U     { move-window-down; }
+    Mod+Shift+I     { move-window-up; }
     Mod+Shift+L     { move-column-right; }
 
     Mod+A { focus-column-first; }
@@ -249,15 +255,10 @@ binds {
     Mod+Shift+A { move-column-to-first; }
     Mod+Shift+E  { move-column-to-last; }
 
-    Mod+U              { focus-workspace-down; }
-    Mod+I              { focus-workspace-up; }
-    Mod+Shift+U         { move-column-to-workspace-down; }
-    Mod+Shift+I         { move-column-to-workspace-up; }
-
-    Mod+Shift+Page_Down { move-workspace-down; }
-    Mod+Shift+Page_Up   { move-workspace-up; }
-    Mod+Shift+Ctrl+U    { move-workspace-down; }
-    Mod+Shift+Ctrl+I    { move-workspace-up; }
+    Mod+J              { focus-workspace-down; }
+    Mod+K              { focus-workspace-up; }
+    Mod+Shift+J         { move-column-to-workspace-down; }
+    Mod+Shift+K         { move-column-to-workspace-up; }
 
     Mod+Shift+WheelScrollDown      cooldown-ms=30 { focus-workspace-down; }
     Mod+Shift+WheelScrollUp        cooldown-ms=30 { focus-workspace-up; }
