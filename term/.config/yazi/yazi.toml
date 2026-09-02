@@ -6,3 +6,4 @@ show_hidden    = false
 edit = [
     { run = "${EDITOR:-vim} %s", desc = "$EDITOR",      for = "unix", block = true },
 ]
+
