@@ -138,7 +138,7 @@ follows_mouse_max_scroll = 0
 "Ctrl+Alt+Delete" = { action = "session-quit", repeat = false }
 
 "Mod+Return" = { action = "spawn:kitty", repeat = false }
-"Mod+D" = { action ="spawn:vicinae open", repeat = false }
+"Mod+D" = { action = "spawn:noctalia msg panel-toggle launcher", repeat = false }
 
 "Mod+Shift+F" = "window-toggle-fullscreen"
 "Mod+Ctrl+F" = "window-cycle-width"
@@ -198,9 +198,7 @@ match.app_id = "spotify$|steam|heroic|org.prismlauncher.PrismLauncher"
 default_workspace = 2
 
 [[window_rule]]
-match.app_id = "^steam_app_|gamescope|rocketleague.exe|endfield.exe"
-match.content_type = "game"
-match.xdg_tag = "^proton-game$"
+match.app_id = "^steam_app_[0-9]+$|gamescope"
 default_workspace = 3
 
 [[window_rule]]
