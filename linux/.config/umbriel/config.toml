@@ -3,7 +3,11 @@
 # Changes apply on save. See docs/user/ for the full reference.
 
 [include]
-files = []
+files = [
+    "design.toml",
+    "keybinds.toml",
+    "rules.toml",
+]
 
 [general]
 autostart = [
@@ -13,12 +17,12 @@ autostart = [
     "kitty",
     "discord",
     "spotify",
-    "gpu-screen-recorder -w screen -c mp4 -f 30 -r 15 -bm cbr -q 4000 -k av1 -ac opus -ab 48k -o ~/Videos/replays -a 'default_output'",
+    "spawn:~/.scripts/applications/gsr/start.sh",
 ]
 
-xwayland = true                # requires xwayland-satellite on PATH; restart to change
+xwayland = true                 # requires xwayland-satellite on PATH; restart to change
 show_cheatsheet = false         # show keybinds overlay on startup
-focus_on_activate = false      # unsolicited requests cannot add focus; trusted launches may still focus
+focus_on_activate = false       # unsolicited requests cannot add focus; trusted launches may still focus
 honor_restored_maximize = false # let apps restore their saved maximized state
 
 [environment]
@@ -29,73 +33,17 @@ QT_QPA_PLATFORMTHEME = "qt5ct"
 back_and_forth = false
 empty_above = false
 
-# Colors ---------------------------------------------------------------------
-
-[colors]
-# background = "#141419FF"
-# text_primary = "#E8E8EAFF"
-# text_muted = "#8A8A92FF"
-# accent_primary = "#7AA3FFFF"
-# accent_secondary = "#F5C96BFF"
-# warning = "#F5C96BFF"
-# error = "#FF6B6BFF"
-
-# Animation ------------------------------------------------------------------
-
-[animation]
-enabled = true
-duration_ms = 100
-curve = "easeout"
-
-# Appearance -----------------------------------------------------------------
-
-[appearance]
-prefer_no_csd = true           # false lets newly started apps draw their own decorations
-border_width = 2            # 0-100
-outer_border_width = 0         # 0-100
-corner_radius = 10             # 0-100, radius of the final decorated outer edge
-drag_opacity = 0.9
-border_focused = "#606060"
-border_unfocused = "#313131"
-
-[appearance.blur]
-enabled = false
-
-[appearance.shadow]
-enabled = true
-softness = 10                 # 0-200, 0 = hard edge
-offset_x = 0                  # -200 to 200
-offset_y = 0
-color = "#000700"
-
-# Overview -------------------------------------------------------------------
-
-[overview]
-zoom = 0.7                     # 0.1-0.75
-
-# Layout ---------------------------------------------------------------------
-
-[layout]
-mode = "scrolling"             # "scrolling", "dwindle", or "master"
-gap = 2                        # 0-500
-width_presets = [0.5, 1.0] # width and height cycling, tiled and floating alike
-
-[layout.scrolling]
-direction = "horizontal"
-default_width_fraction = 0.5  # remove to let clients choose their initial width
-center_underfull_strip = false  # center the strip whenever it is narrower than the viewport
-center_focused = false # always center the focused column
 
 # Outputs (see docs/user/outputs.md) ----------------------------------------
 
 [output."DP-1"]
 mode = "3440x1440@143.975"
-tearing = true                 # allow eligible fullscreen clients to request tearing
 vrr = "fullscreen"
-direct_scanout = true           # false forces composition on this output
-hdr = "auto"                  # "off", "on", metadata-driven "auto", or any-app "fullscreen"
-enabled = true                # false removes it; re-enabling restores windows, layout, active workspace, and taskbar entries
 workspaces = 5
+direct_scanout = true       # false forces composition on this output
+tearing = true              # allow eligible fullscreen clients to request tearing
+hdr = "auto"                # "off", "on", metadata-driven "auto", or any-app "fullscreen"
+enabled = true              # false removes it; re-enabling restores windows, layout, active workspace, and taskbar entries
 
 # Input ----------------------------------------------------------------------
 
@@ -103,20 +51,18 @@ workspaces = 5
 middle_click_paste = false      # primary-selection clipboard, applies on reload
 
 [input.keyboard]
-# ASCII keybind fallback uses only layouts listed for this keyboard; a single
-# non-Latin layout has no implicit Latin fallback.
-layout = "us"                    # "us,de" loads both; switch with keyboard-layout-next
+layout = "us"               # "us,de" loads both; switch with keyboard-layout-next
 variant = ""
-options = ""                   # XKB options, e.g. "grp:alt_shift_toggle"
-repeat_rate = 35               # 0-1000 Hz
-repeat_delay = 300             # 0-10000 ms
-numlock_toggle = true # true enables NumLock when a keyboard connects; false leaves it off
-track_layout = "global"        # "global", or "window" to track the layout per surface
+options = ""                # XKB options, e.g. "grp:alt_shift_toggle"
+repeat_rate = 35            # 0-1000 Hz
+repeat_delay = 300          # 0-10000 ms
+numlock_toggle = true       # true enables NumLock when a keyboard connects; false leaves it off
+track_layout = "global"     # "global", or "window" to track the layout per surface
 
 [input.mouse]
-accel_profile = "flat"       # omitted preserves the device's libinput default
-sensitivity = 0.0              # pointer speed, -1.0 to 1.0
-scroll_wheel_step = 60         # 1-1000
+accel_profile = "flat"      # omitted preserves the device's libinput default
+sensitivity = 0.0           # pointer speed, -1.0 to 1.0
+scroll_wheel_step = 60      # 1-1000
 
 [input.cursor]
 theme = "capitaine-cursors"
@@ -129,98 +75,6 @@ hide_timeout_ms = 0             # 0-3600000, 0 disables hiding
 [input.focus]
 follows_mouse = true
 follows_mouse_max_scroll = 0
-
-# Keybinds (see docs/user/keybinds.md) --------------------------------------
-
-[keybinds]
-"Mod+Tab" = { action = "overview-toggle", repeat = false }
-"Mod+Escape" = { action = "spawn:noctalia msg panel-open session", repeat = false }
-"Mod+Q" = { action = "window-close", repeat = false }
-"Ctrl+Alt+Delete" = { action = "session-quit", repeat = false }
-
-"Mod+Return" = { action = "spawn:kitty", repeat = false }
-"Mod+D" = { action = "spawn:noctalia msg panel-toggle launcher", repeat = false }
-
-"Mod+Shift+F" = "window-toggle-fullscreen"
-"Mod+Ctrl+F" = "window-cycle-width"
-"Mod+f" = "window-toggle-floating"
-
-"Mod+Shift+P" = "window-focus-switch-floating"
-"Mod+P" = "window-toggle-pinned"
-
-"Mod+Shift+S" = "spawn:noctalia msg screenshot-region"
-
-"Mod+X" = "spawn:~/.scripts/autoclick.sh"
-"Mod+Z" = "spawn:killall -SIGUSR1 gpu-screen-recorder & notify-send -a gpu-screen-recorder Replay\\ Saved"
-
-"Mod+Space" = "spawn:playerctl -p spotify play-pause && playerctl -p spotify volume 0.35"
-
-"Mod+H" = "window-focus-left"
-"Mod+L" = "window-focus-right"
-"Mod+J" = "workspace-next"
-"Mod+K" = "workspace-previous"
-
-"Mod+Shift+H" = "column-move-left"
-"Mod+Shift+L" = "column-move-right"
-"Mod+Shift+J" = "column-move-to-workspace-next"
-"Mod+Shift+K" = "column-move-to-workspace-previous"
-
-"Mod+WheelUp" = "window-focus-left"
-"Mod+WheelDown" = "window-focus-right"
-"Mod+Shift+WheelUp" = "workspace-previous"
-"Mod+Shift+WheelDown" = "workspace-next"
-
-"Mod+A" = "column-focus-first"
-"Mod+E" = "column-focus-last"
-
-"Mod+Shift+A" = "column-move-to-first"
-"Mod+Shift+E" = "column-move-to-last"
-
-"Mod+1" = "workspace-switch:1"
-"Mod+2" = "workspace-switch:2"
-"Mod+3" = "workspace-switch:3"
-"Mod+4" = "workspace-switch:4"
-"Mod+5" = "workspace-switch:5"
-
-"Mod+Shift+1" = "column-move-to-workspace:1"
-"Mod+Shift+2" = "column-move-to-workspace:2"
-"Mod+Shift+3" = "column-move-to-workspace:3"
-"Mod+Shift+4" = "column-move-to-workspace:4"
-"Mod+Shift+5" = "column-move-to-workspace:5"
-
-# Window rules (see docs/user/window-rules.md) ---------------------------
-
-[[window_rule]]
-match.app_id = "brave-browser$|discord$"
-default_workspace = 1
-
-[[window_rule]]
-match.app_id = "spotify$|steam|heroic|org.prismlauncher.PrismLauncher"
-default_workspace = 2
-
-[[window_rule]]
-match.app_id = "^steam_app_[0-9]+$|gamescope"
-default_workspace = 3
-
-[[window_rule]]
-match.title = "Picture-in-[Pp]icture|Discord Popout"
-default_floating = true
-default_pinned = true
-default_position = { x = 4, y = 4, anchor = "top_right" }
-default_size = [991, 560]
-
-[[window_rule]]
-match.app_id = "^dev.noctalia.Noctalia$"
-default_floating = true
-default_size = [1020, 900]
-
-[[window_rule]]
-match.app_id = "^dev.noctalia.UmbrielSharePicker$"
-default_floating = true
-default_size = [800, 600]
-
-# Layer rules (see docs/user/layer-rules.md) ---------------------------
-
 
 # Security context rules (see docs/user/security.md) ----------------------
 

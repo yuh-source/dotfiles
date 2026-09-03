@@ -1,0 +1,57 @@
+# Keybinds (see docs/user/keybinds.md) --------------------------------------
+
+[keybinds]
+"Mod+Tab" = { action = "overview-toggle", repeat = false }
+"Mod+Escape" = { action = "spawn:noctalia msg panel-open session", repeat = false }
+"Mod+Q" = { action = "window-close", repeat = false }
+"Ctrl+Alt+Delete" = { action = "session-quit", repeat = false }
+
+"Mod+Return" = { action = "spawn:kitty", repeat = false }
+"Mod+D" = { action = "spawn:noctalia msg panel-toggle launcher", repeat = false }
+
+"Mod+Shift+F" = "window-toggle-fullscreen"
+"Mod+Ctrl+F" = "window-cycle-width"
+"Mod+f" = "window-toggle-floating"
+
+"Mod+Shift+P" = "window-focus-switch-floating"
+"Mod+P" = "window-toggle-pinned"
+
+"Mod+Shift+S" = "spawn:noctalia msg screenshot-region"
+
+"Mod+X" = "spawn:~/.scripts/autoclick.sh"
+"Mod+Z" = "spawn:~/.scripts/applications/gsr/capture.sh"
+
+"Mod+Space" = "spawn:~/.scripts/applications/spotify/play-pause.sh"
+
+"Mod+H" = "window-focus-left"
+"Mod+L" = "window-focus-right"
+"Mod+J" = "workspace-next"
+"Mod+K" = "workspace-previous"
+
+"Mod+Shift+H" = "column-move-left"
+"Mod+Shift+L" = "column-move-right"
+"Mod+Shift+J" = "column-move-to-workspace-next"
+"Mod+Shift+K" = "column-move-to-workspace-previous"
+
+"Mod+WheelUp" = "window-focus-left"
+"Mod+WheelDown" = "window-focus-right"
+"Mod+Shift+WheelUp" = "workspace-previous"
+"Mod+Shift+WheelDown" = "workspace-next"
+
+"Mod+A" = "column-focus-first"
+"Mod+E" = "column-focus-last"
+
+"Mod+Shift+A" = "column-move-to-first"
+"Mod+Shift+E" = "column-move-to-last"
+
+"Mod+1" = "workspace-switch:1"
+"Mod+2" = "workspace-switch:2"
+"Mod+3" = "workspace-switch:3"
+"Mod+4" = "workspace-switch:4"
+"Mod+5" = "workspace-switch:5"
+
+"Mod+Shift+1" = "column-move-to-workspace:1"
+"Mod+Shift+2" = "column-move-to-workspace:2"
+"Mod+Shift+3" = "column-move-to-workspace:3"
+"Mod+Shift+4" = "column-move-to-workspace:4"
+"Mod+Shift+5" = "column-move-to-workspace:5"

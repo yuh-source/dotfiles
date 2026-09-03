@@ -1,0 +1,33 @@
+# Window rules (see docs/user/window-rules.md) ---------------------------
+
+[[window_rule]]
+match.app_id = "brave-browser$|discord$"
+default_workspace = 1
+
+[[window_rule]]
+match.app_id = "spotify$|steam|heroic|org.prismlauncher.PrismLauncher"
+default_workspace = 2
+
+[[window_rule]]
+match.app_id = "^steam_app_[0-9]+$|gamescope"
+default_workspace = 3
+
+[[window_rule]]
+match.title = "Picture-in-[Pp]icture|Discord Popout"
+default_floating = true
+default_pinned = true
+default_position = { x = 4, y = 4, anchor = "top_right" }
+default_size = [991, 560]
+
+[[window_rule]]
+match.app_id = "^dev.noctalia.Noctalia$"
+default_floating = true
+default_size = [1020, 900]
+
+[[window_rule]]
+match.app_id = "^dev.noctalia.UmbrielSharePicker$"
+default_floating = true
+default_size = [800, 600]
+
+# Layer rules (see docs/user/layer-rules.md) ---------------------------
+

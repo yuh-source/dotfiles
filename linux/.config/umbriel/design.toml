@@ -1,0 +1,56 @@
+# Layout ---------------------------------------------------------------------
+
+[layout]
+mode = "scrolling"          # "scrolling", "dwindle", or "master"
+gap = 2                     # 0-500
+width_presets = [0.5, 1.0]  # width and height cycling, tiled and floating alike
+
+[layout.scrolling]
+direction = "horizontal"
+default_width_fraction = 0.5    # remove to let clients choose their initial width
+center_underfull_strip = false  # center the strip whenever it is narrower than the viewport
+center_focused = false          # always center the focused column
+
+# Appearance -----------------------------------------------------------------
+
+[appearance]
+prefer_no_csd = true           # false lets newly started apps draw their own decorations
+border_width = 2               # 0-100
+outer_border_width = 0         # 0-100
+corner_radius = 10             # 0-100, radius of the final decorated outer edge
+drag_opacity = 0.9
+border_focused = "#606060"
+border_unfocused = "#313131"
+
+[appearance.blur]
+enabled = false
+
+[appearance.shadow]
+enabled = true
+softness = 10                 # 0-200, 0 = hard edge
+offset_x = 0                  # -200 to 200
+offset_y = 0
+color = "#000700"
+
+# Animation ------------------------------------------------------------------
+
+[animation]
+enabled = true
+duration_ms = 100
+curve = "easeout"
+
+# Colors ---------------------------------------------------------------------
+
+[colors]
+# background = "#141419FF"
+# text_primary = "#E8E8EAFF"
+# text_muted = "#8A8A92FF"
+# accent_primary = "#7AA3FFFF"
+# accent_secondary = "#F5C96BFF"
+# warning = "#F5C96BFF"
+# error = "#FF6B6BFF"
+
+# Overview -------------------------------------------------------------------
+
+[overview]
+zoom = 0.7                     # 0.1-0.75
