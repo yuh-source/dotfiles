@@ -17,7 +17,7 @@ autostart = [
     "kitty",
     "discord",
     "spotify",
-    "spawn:~/.scripts/applications/gsr/start.sh",
+    "spawn:~/.scripts/apps/gsr/start.sh",
 ]
 
 xwayland = true                 # requires xwayland-satellite on PATH; restart to change

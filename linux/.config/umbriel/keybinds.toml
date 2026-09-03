@@ -19,9 +19,9 @@
 "Mod+Shift+S" = "spawn:noctalia msg screenshot-region"
 
 "Mod+X" = "spawn:~/.scripts/autoclick.sh"
-"Mod+Z" = "spawn:~/.scripts/applications/gsr/capture.sh"
+"Mod+Z" = "spawn:~/.scripts/apps/gsr/capture.sh"
 
-"Mod+Space" = "spawn:~/.scripts/applications/spotify/play-pause.sh"
+"Mod+Space" = "spawn:~/.scripts/apps/spotify/play-pause.sh"
 
 "Mod+H" = "window-focus-left"
 "Mod+L" = "window-focus-right"
