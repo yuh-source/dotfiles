@@ -44,7 +44,7 @@ empty_above = false
 
 [animation]
 enabled = true
-duration_ms = 80
+duration_ms = 100
 curve = "easeout"
 
 # Appearance -----------------------------------------------------------------
@@ -63,9 +63,9 @@ enabled = false
 
 [appearance.shadow]
 enabled = true
-softness = 30                 # 0-200, 0 = hard edge
+softness = 10                 # 0-200, 0 = hard edge
 offset_x = 0                  # -200 to 200
-offset_y = 5
+offset_y = 0
 color = "#000700"
 
 # Overview -------------------------------------------------------------------
@@ -91,6 +91,7 @@ center_focused = false # always center the focused column
 [output."DP-1"]
 mode = "3440x1440@143.975"
 tearing = true                 # allow eligible fullscreen clients to request tearing
+vrr = "fullscreen"
 direct_scanout = true           # false forces composition on this output
 hdr = "auto"                  # "off", "on", metadata-driven "auto", or any-app "fullscreen"
 enabled = true                # false removes it; re-enabling restores windows, layout, active workspace, and taskbar entries
@@ -205,7 +206,7 @@ default_workspace = 3
 match.title = "Picture-in-[Pp]icture|Discord Popout"
 default_floating = true
 default_pinned = true
-default_position = { x = 0, y = 2, anchor = "top_right" }
+default_position = { x = 4, y = 4, anchor = "top_right" }
 default_size = [991, 560]
 
 [[window_rule]]
