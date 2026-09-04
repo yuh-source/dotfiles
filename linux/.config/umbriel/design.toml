@@ -19,8 +19,6 @@ border_width = 2               # 0-100
 outer_border_width = 0         # 0-100
 corner_radius = 10             # 0-100, radius of the final decorated outer edge
 drag_opacity = 0.9
-border_focused = "#606060"
-border_unfocused = "#313131"
 
 [appearance.blur]
 enabled = false
@@ -30,7 +28,6 @@ enabled = true
 softness = 10                 # 0-200, 0 = hard edge
 offset_x = 0                  # -200 to 200
 offset_y = 0
-color = "#000700"
 
 # Animation ------------------------------------------------------------------
 
@@ -49,6 +46,11 @@ curve = "easeout"
 # accent_secondary = "#F5C96BFF"
 # warning = "#F5C96BFF"
 # error = "#FF6B6BFF"
+ shadow = "#000700"
+
+[colors.border]
+focused = "#606060"
+unfocused = "#313131"
 
 # Overview -------------------------------------------------------------------
 
