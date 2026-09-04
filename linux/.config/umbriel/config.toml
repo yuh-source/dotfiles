@@ -12,12 +12,11 @@ files = [
 [general]
 autostart = [
     "noctalia -d",
-    "vicinae server",
     "brave",
     "kitty",
     "discord",
     "spotify",
-    "spawn:~/.scripts/apps/gsr/start.sh",
+    "~/.scripts/apps/gsr/start.sh",
 ]
 
 xwayland = true                 # requires xwayland-satellite on PATH; restart to change
