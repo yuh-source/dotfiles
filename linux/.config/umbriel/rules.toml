@@ -10,6 +10,14 @@ default_workspace = 2
 
 [[window_rule]]
 match.app_id = "^steam_app_[0-9]+$|gamescope"
+default_fullscreen = true
+default_focused = false
+default_workspace = 3
+
+[[window_rule]]
+match.app_id = "org.vinegarhq.Sober|Minecraft|Cleanroom"
+default_maximize = true
+default_focused = false
 default_workspace = 3
 
 [[window_rule]]
