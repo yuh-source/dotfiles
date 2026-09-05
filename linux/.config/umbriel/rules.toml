@@ -1,12 +1,32 @@
 # Window rules (see docs/user/window-rules.md) ---------------------------
 
 [[window_rule]]
-match.app_id = "brave-browser$|discord$"
+match.app_id = "brave-browser"
+match.at_startup = true
 default_workspace = 1
 
 [[window_rule]]
-match.app_id = "spotify$|steam|heroic|org.prismlauncher.PrismLauncher"
+match.app_id = "discord"
+match.at_startup = true
+default_scrolling_column_order = 0
+default_scrolling_column = "twin"
+default_workspace = 1
+
+[[window_rule]]
+match.app_id = "kitty"
+match.at_startup = true
+default_scrolling_column_order = 1
+default_scrolling_column = "twin"
+default_workspace = 1
+
+[[window_rule]]
+match.app_id = "spotify|steam|heroic|org.prismlauncher.PrismLauncher"
 default_workspace = 2
+
+[[window_rule]]
+match.app_id = "steam"
+match.title = "^(?!Steam$).*$"
+default_floating = true
 
 [[window_rule]]
 match.app_id = "^steam_app_[0-9]+$|gamescope"
@@ -25,7 +45,7 @@ match.title = "Picture-in-[Pp]icture|Discord Popout"
 default_floating = true
 default_pinned = true
 default_position = { x = 4, y = 4, anchor = "top_right" }
-default_size = [991, 560]
+default_size = [960, 540]
 
 [[window_rule]]
 match.app_id = "^dev.noctalia.Noctalia$"
